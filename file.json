@@ -125,12 +125,27 @@
     },
     "User.d45a2143-e3e8-4c74-a09d-ec59aeda2781": {
         "id": "d45a2143-e3e8-4c74-a09d-ec59aeda2781",
-        "created_at": "2023-09-20T12:08:06.293058",
+        "created_at": "2023-09-20T12:08:06.293125",
         "updated_at": "2023-09-20T12:08:06.293125",
         "email": "gui@hbtn.io",
         "password": "guipwd",
         "first_name": "Guillaume",
         "last_name": "Snow",
         "__class__": "User"
+    },
+    "Place.c3d7fe62-d9b4-4f3f-b094-783152dfe6fd": {
+        "id": "c3d7fe62-d9b4-4f3f-b094-783152dfe6fd",
+        "created_at": "2023-09-20T12:09:47.529815",
+        "updated_at": "2023-09-20T12:09:47.529920",
+        "city_id": "4b457e66-c7c8-4f63-910f-fd91c3b7140b",
+        "user_id": "4f3f4b42-a4c3-4c20-a492-efff10d00c0b",
+        "name": "Lovely place",
+        "number_rooms": 3,
+        "number_bathrooms": 1,
+        "max_guest": 6,
+        "price_by_night": 120,
+        "latitude": 37.773972,
+        "longitude": -122.431297,
+        "__class__": "Place"
     }
 }
