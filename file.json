@@ -135,7 +135,7 @@
     },
     "Place.c3d7fe62-d9b4-4f3f-b094-783152dfe6fd": {
         "id": "c3d7fe62-d9b4-4f3f-b094-783152dfe6fd",
-        "created_at": "2023-09-20T12:09:47.529815",
+        "created_at": "2023-09-20T12:09:47.529920",
         "updated_at": "2023-09-20T12:09:47.529920",
         "city_id": "4b457e66-c7c8-4f63-910f-fd91c3b7140b",
         "user_id": "4f3f4b42-a4c3-4c20-a492-efff10d00c0b",
@@ -147,5 +147,24 @@
         "latitude": 37.773972,
         "longitude": -122.431297,
         "__class__": "Place"
+    },
+    "User.ea501085-b413-406d-9be3-1c9f9c58649e": {
+        "id": "ea501085-b413-406d-9be3-1c9f9c58649e",
+        "created_at": "2023-09-20T12:11:35.548818",
+        "updated_at": "2023-09-20T12:11:35.548818",
+        "email": "bob@hbtn.io",
+        "password": "bobpwd",
+        "first_name": "Bob",
+        "last_name": "Dylan",
+        "__class__": "User"
+    },
+    "Review.04cc61d5-33e3-4745-83bb-386471b1f6df": {
+        "id": "04cc61d5-33e3-4745-83bb-386471b1f6df",
+        "created_at": "2023-09-20T12:11:44.521075",
+        "updated_at": "2023-09-20T12:11:44.521130",
+        "place_id": "ed72aa02-3286-4891-acbc-9d9fc80a1103",
+        "user_id": "d93638d9-8233-4124-8f4e-17786592908b",
+        "text": "Amazing place, huge kitchen",
+        "__class__": "Review"
     }
 }
