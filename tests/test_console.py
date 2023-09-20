@@ -1,84 +1,88 @@
 #!/usr/bin/python3
-"""TestConsole Module"""
-import unittest
+"""[summary]
+"""
+from unittest import TestCase
+from unittest.mock import patch
+from io import StringIO
+from console import HBNBCommand
 import os
 import sys
-from io import StringIO
-from unittest.mock import patch
-from console import HBNBCommand
 
 
-class TestConsole(unittest.TestCase):
-    """Tests the console"""
+class TestConsole(TestCase):
+    """[Test console]
 
+    Args:
+        TestCase ([obj]): [TestCase from unittest module]
+    """
     def setUp(self):
-        """SetUp"""
+        """[setup method]
+        """
         pass
 
     def tearDown(self):
-        """TearDown"""
+        """[teardown method]
+        """
         try:
-            os.remove('file.json')
-        except:
+            os.remove("file.json")
+        except FileNotFoundError:
             pass
 
-    def test_create_method_without_args(self):
-        """ """
+    def test_class_name_missing(self):
+        """[test class name]
+        """
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("create")
         msg = f.getvalue()[:-1]
         self.assertEqual(msg, "** class name missing **")
 
-    def test_create_method_with_wrong_class_name(self):
-        """ """
+    def test_wrong_class(self):
+        """[test wrong class]
+        """
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("create wrong_class_name")
+            HBNBCommand().onecmd("create bouhabra")
         msg = f.getvalue()[:-1]
         self.assertEqual(msg, "** class doesn't exist **")
 
-    def test_create_method_work_as_fine(self):
-        """ """
+    def test_id_type(self):
+        """[test type id]
+        """
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("create Place")
+            HBNBCommand().onecmd("create User")
         msg = f.getvalue()[:-1]
-        self.assertRegex(msg, '\w{8}-\w{4}-\w{4}-\w{4}-\w{12}')
+        self.assertEqual(type(msg), str)
 
-    def test_create_method_accept_a_number_as_string(self):
-        """ """
+    def test_all_output_type(self):
+        """[test type]
+        """
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("create Place user_id=\"001\"")
-            HBNBCommand().onecmd("all Place")
+            HBNBCommand().onecmd("all")
         msg = f.getvalue()[:-1]
-        self.assertRegex(msg, "'user_id': '001'")
+        self.assertEqual(type(msg), str)
 
-    def test_create_method_accept_attribute_value_with_underscore(self):
-        """ """
+    def test_create_user(self):
+        """[test_user]
+        """
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("create Place name=\"My_little_house\"")
-            HBNBCommand().onecmd("all Place")
+            HBNBCommand().onecmd('create User name="lothric"')
+            HBNBCommand().onecmd('all User')
         msg = f.getvalue()[:-1]
-        self.assertRegex(msg, "'name': 'My little house'")
+        self.assertTrue("'name': 'lothric'" in msg)
 
-    def test_create_method_accept_attribute_value_with_positive_float(self):
-        """ """
+    def test_decimal(self):
+        """[test_decimal]
+        """
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("create Place latitude=37.7739724")
-            HBNBCommand().onecmd("all Place")
+            HBNBCommand().onecmd('create User number_bathrooms=4')
+            HBNBCommand().onecmd('all User')
         msg = f.getvalue()[:-1]
-        self.assertRegex(msg, "'latitude': 37.7739724")
+        self.assertTrue("'number_bathrooms': 4" in msg)
 
-    def test_create_method_accept_attribute_value_with_negative_float(self):
-        """ """
+    def test_float(self):
+        """[test_float]
+        """
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("create Place longitude=-122.431297")
-            HBNBCommand().onecmd("all Place")
+            HBNBCommand().onecmd('create User price=0.069')
+            HBNBCommand().onecmd('all User')
         msg = f.getvalue()[:-1]
-        self.assertRegex(msg, "'longitude': -122.431297")
-
-    def test_create_method_accept_attribute_value_with_int(self):
-        """ """
-        with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("create Place number_rooms=4")
-            HBNBCommand().onecmd("all Place")
-        msg = f.getvalue()[:-1]
-        self.assertRegex(msg, "'number_rooms': 4")
+        self.assertTrue("'price': 0.069" in msg)

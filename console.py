@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """ Console Module """
 import cmd
-import re
 import sys
-import os
 from models.base_model import BaseModel
 from models.__init__ import storage
+from models.engine.file_storage import FileStorage
+from models.engine.db_storage import DBStorage
 from models.user import User
 from models.place import Place
 from models.state import State
@@ -75,7 +75,7 @@ class HBNBCommand(cmd.Cmd):
                 pline = pline[2].strip()  # pline is now str
                 if pline:
                     # check for *args or **kwargs
-                    if pline[0] is '{' and pline[-1] is'}'\
+                    if pline[0] == '{' and pline[-1] == '}'\
                             and type(eval(pline)) is dict:
                         _args = pline
                     else:
@@ -115,45 +115,31 @@ class HBNBCommand(cmd.Cmd):
         """ Overrides the emptyline method of CMD """
         pass
 
-    def do_create(self, args):
+    def do_create(self, line):
         """ Create an object of any class"""
-        class_name = args.partition(" ")[0]
-        if not class_name:
+        if not line:
             print("** class name missing **")
             return
-        elif class_name not in HBNBCommand.classes:
+        args = line.split()
+        if args[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        # isolate args from class name
-        kwargs = {}
-        args = args.partition(" ")[2]
-        while len(args) > 2:
-            param = args.partition(" ")[0]
-            # grabs the key and value
-            key = param.split("=")[0]
-            value = param.split("=")[1]
-            # checks if the value contain double quotes
-            if re.match('^\"(.*)\"$', value):
-                value = value.strip('\"')
-                # replace the underscore with space
-                if '_' in value:
-                    value = value.replace("_", " ")
-            # cast to float value with dot
-            elif '.' in value:
-                value = float(value)
-            # cast to integer value with decimal
-            elif re.match('^[0-9]+$', value):
-                value = int(value)
-            kwargs[key] = value
-            args = args.partition(" ")[2]
-        new_instance = HBNBCommand.classes[class_name]()
-        for key, value in kwargs.items():
-            setattr(new_instance, key, value)
-        # // new_instance.save()
-        # // storage.all()[class_name + '.' + new_instance.id].\
-        # //     __dict__.update(kwargs)
-        print(new_instance.id)
+        new_instance = eval(args[0])()
+        param = args[1:]
+        for p in param:
+            sparam = p.split("=")
+            key = sparam[0]
+            val = sparam[1]
+            if val[0] == '\"' and val[-1] == '\"':
+                val = val.replace("_", " ")
+                val = val.strip('"')
+            elif '.' in val:
+                val = float(val)
+            else:
+                val = int(val)
+            setattr(new_instance, key, val)
         new_instance.save()
+        print(new_instance.id)
 
     def help_create(self):
         """ Help information for the create method """
@@ -216,7 +202,7 @@ class HBNBCommand(cmd.Cmd):
         key = c_name + "." + c_id
 
         try:
-            del(storage.all()[key])
+            del (storage.all()[key])
             storage.save()
         except KeyError:
             print("** no instance found **")
@@ -227,34 +213,23 @@ class HBNBCommand(cmd.Cmd):
         print("[Usage]: destroy <className> <objectId>\n")
 
     def do_all(self, args):
-        """ Shows all objects, or all objects of a class"""
-        print_list = []
-
-        if os.getenv("HBNB_TYPE_STORAGE") == 'db':
-            if args:
-                args = args.split(' ')[0]  # remove possible trailing args
-                if args not in HBNBCommand.classes:
-                    print("** class doesn't exist **")
-                    return
-                for k, v in storage.all(eval(args)).items():
-                    print_list.append(str(v))
-            else:
-                for k, v in storage.all().items():
-                    print_list.append(str(v))
+        """All command Prints all string representation of \
+            all instances based or not on the class name
+        """
+        args = args.split()
+        lst = []
+        if args and args[0] not in HBNBCommand.classes.keys():
+            print("** class doesn't exist **")
+        elif not args:
+            obj = storage.all()
+            for key in obj:
+                lst.append(str(obj[key]))
+                print(lst)
         else:
-            if args:
-                args = args.split(' ')[0]  # remove possible trailing args
-                if args not in HBNBCommand.classes:
-                    print("** class doesn't exist **")
-                    return
-                for k, v in storage._FileStorage__objects.items():
-                    if k.split('.')[0] == args:
-                        print_list.append(str(v))
-            else:
-                for k, v in storage._FileStorage__objects.items():
-                    print_list.append(str(v))
-
-        print(print_list)
+            obj = storage.all(eval(args[0]))
+            for key in obj:
+                lst.append(str(obj[key]))
+                print(lst)
 
     def help_all(self):
         """ Help information for the all command """
@@ -313,7 +288,7 @@ class HBNBCommand(cmd.Cmd):
                 args.append(v)
         else:  # isolate args
             args = args[2]
-            if args and args[0] is '\"':  # check for quoted arg
+            if args and args[0] == '\"':  # check for quoted arg
                 second_quote = args.find('\"', 1)
                 att_name = args[1:second_quote]
                 args = args[second_quote + 1:]
@@ -321,10 +296,10 @@ class HBNBCommand(cmd.Cmd):
             args = args.partition(' ')
 
             # if att_name was not quoted arg
-            if not att_name and args[0] is not ' ':
+            if not att_name and args[0] != ' ':
                 att_name = args[0]
             # check for quoted val arg
-            if args[2] and args[2][0] is '\"':
+            if args[2] and args[2][0] == '\"':
                 att_val = args[2][1:args[2].find('\"', 1)]
 
             # if att_val was not quoted arg
