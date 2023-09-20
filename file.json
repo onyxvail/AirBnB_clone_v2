@@ -173,5 +173,21 @@
         "updated_at": "2023-09-20T11:32:40.993328",
         "name": "California",
         "__class__": "State"
+    },
+    "City.873511d3-1336-49ca-a281-55f566d1170a": {
+        "id": "873511d3-1336-49ca-a281-55f566d1170a",
+        "created_at": "2023-09-20T11:33:52.728389",
+        "updated_at": "2023-09-20T11:33:52.728420",
+        "state_id": "95a5abab-aa65-4861-9bc6-1da4a36069aa",
+        "name": "San Francisco",
+        "__class__": "City"
+    },
+    "City.e1ced9fc-a846-444c-a3cb-4597a55215eb": {
+        "id": "e1ced9fc-a846-444c-a3cb-4597a55215eb",
+        "created_at": "2023-09-20T11:34:14.090390",
+        "updated_at": "2023-09-20T11:34:14.090434",
+        "state_id": "95a5abab-aa65-4861-9bc6-1da4a36069aa",
+        "name": "San Jose",
+        "__class__": "City"
     }
 }
