@@ -88,16 +88,39 @@
     },
     "State.f3776daf-0111-433b-b03a-59b2acf7b8d5": {
         "id": "f3776daf-0111-433b-b03a-59b2acf7b8d5",
-        "created_at": "2023-09-20T12:02:50.326243",
+        "created_at": "2023-09-20T12:02:50.326255",
         "updated_at": "2023-09-20T12:02:50.326255",
         "name": "California",
         "__class__": "State"
     },
     "State.9b02259d-4e7a-4404-b38d-e740ffea59b2": {
         "id": "9b02259d-4e7a-4404-b38d-e740ffea59b2",
-        "created_at": "2023-09-20T12:02:50.328210",
+        "created_at": "2023-09-20T12:02:50.328225",
         "updated_at": "2023-09-20T12:02:50.328225",
         "name": "Nevada",
         "__class__": "State"
+    },
+    "State.b5919082-8db9-4bcc-9cdb-10eca29a4e3a": {
+        "id": "b5919082-8db9-4bcc-9cdb-10eca29a4e3a",
+        "created_at": "2023-09-20T12:04:33.873846",
+        "updated_at": "2023-09-20T12:04:33.873846",
+        "name": "California",
+        "__class__": "State"
+    },
+    "City.127a9731-288f-422d-b542-6090834bdc26": {
+        "id": "127a9731-288f-422d-b542-6090834bdc26",
+        "created_at": "2023-09-20T12:06:06.627231",
+        "updated_at": "2023-09-20T12:06:06.627231",
+        "state_id": "95a5abab-aa65-4861-9bc6-1da4a36069aa",
+        "name": "San Francisco",
+        "__class__": "City"
+    },
+    "City.eb219dab-c7a7-4171-98a0-8ad909e6a99f": {
+        "id": "eb219dab-c7a7-4171-98a0-8ad909e6a99f",
+        "created_at": "2023-09-20T12:06:31.436542",
+        "updated_at": "2023-09-20T12:06:31.436680",
+        "state_id": "95a5abab-aa65-4861-9bc6-1da4a36069aa",
+        "name": "San Jose",
+        "__class__": "City"
     }
 }
