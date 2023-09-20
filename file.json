@@ -59,21 +59,21 @@
     },
     "State.cc1313c0-e8a2-4d0f-8b7a-ac6922ea504a": {
         "id": "cc1313c0-e8a2-4d0f-8b7a-ac6922ea504a",
-        "created_at": "2023-09-20T11:53:24.627875",
+        "created_at": "2023-09-20T11:53:24.627938",
         "updated_at": "2023-09-20T11:53:24.627938",
         "name": "California",
         "__class__": "State"
     },
     "State.ec816303-751e-4041-8ab5-dabacdb4112d": {
         "id": "ec816303-751e-4041-8ab5-dabacdb4112d",
-        "created_at": "2023-09-20T11:53:24.629478",
+        "created_at": "2023-09-20T11:53:24.629532",
         "updated_at": "2023-09-20T11:53:24.629532",
         "name": "Arizona",
         "__class__": "State"
     },
     "Place.fd7d5719-abc2-4128-9b40-a4cce83b15d1": {
         "id": "fd7d5719-abc2-4128-9b40-a4cce83b15d1",
-        "created_at": "2023-09-20T11:53:24.633339",
+        "created_at": "2023-09-20T11:53:24.633473",
         "updated_at": "2023-09-20T11:53:24.633473",
         "city_id": "0001",
         "user_id": "0001",
@@ -85,5 +85,19 @@
         "latitude": 37.773972,
         "longitude": -122.431297,
         "__class__": "Place"
+    },
+    "State.f3776daf-0111-433b-b03a-59b2acf7b8d5": {
+        "id": "f3776daf-0111-433b-b03a-59b2acf7b8d5",
+        "created_at": "2023-09-20T12:02:50.326243",
+        "updated_at": "2023-09-20T12:02:50.326255",
+        "name": "California",
+        "__class__": "State"
+    },
+    "State.9b02259d-4e7a-4404-b38d-e740ffea59b2": {
+        "id": "9b02259d-4e7a-4404-b38d-e740ffea59b2",
+        "created_at": "2023-09-20T12:02:50.328210",
+        "updated_at": "2023-09-20T12:02:50.328225",
+        "name": "Nevada",
+        "__class__": "State"
     }
 }
