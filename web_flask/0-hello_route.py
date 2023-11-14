@@ -1,16 +1,16 @@
 #!/usr/bin/python3
-"""WebFlask module"""
+"""
+Starts a Flask web application.
+"""
 from flask import Flask
-from os import environ
+
 app = Flask(__name__)
 
-
-@app.route('/', strict_slashes=False)
-def hello_route():
-    """Display Hello HBNB"""
+@app.route('/airbnb-onepage/', strict_slashes=False)
+def hello_hbnb():
+    """Prints a message when accessing the root path."""
     return 'Hello HBNB!'
 
-
 if __name__ == '__main__':
-    environ['FLASK_APP'] = __file__
     app.run(host='0.0.0.0', port=5000)
+
